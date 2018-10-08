@@ -1,0 +1,30 @@
+<h1> Add a city! </h1>
+
+<%= form_with local: true, method: "get", url: "create" do |f| %>
+	<%= f.text_field :city %>
+	<%= f.text_field :landmark %>
+	<%= f.text_field :population %>
+	<%= f.submit %>
+<% end %>
+
+<h1> Update a city! </h1>
+
+<%= form_with local: true, method: "get", url: "update" do |f| %>
+	<%= f.text_field :city %>
+	<%= f.text_field :landmark %>
+	<%= f.text_field :population %>
+	<%= f.submit %>
+<% end %>
+
+<h1> View cities! </h1>
+
+<% City.all.values.each do |c| %>
+	<% if not c.nil? %>
+		<h2> <%= c.name %></h2>
+		<p>
+			It's <%=  (9 / 5) * (c.weather[:temperature] - 273) + 32 %>°F in <%= c.name %> with <%= c.weather[:description] %> <br>
+			Population: <%= c.population %> <br>
+			Landmark: <%= c.landmark %>
+		</p>
+	<% end %>
+<% end %>
